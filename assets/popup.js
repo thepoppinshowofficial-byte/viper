@@ -1,92 +1,90 @@
 (function () {
 
-```
-const REDIRECT = "https://kouponsfy.online";
+    const REDIRECT = "https://kouponsfy.online";
 
-function buildPopup() {
+    function buildPopup() {
 
-    if (document.querySelector(".modal-backdrop")) return null;
+        if (document.querySelector(".modal-backdrop")) return null;
 
-    const bd = document.createElement("div");
+        const bd = document.createElement("div");
 
-    bd.className = "modal-backdrop";
+        bd.className = "modal-backdrop";
 
-    bd.innerHTML = `
-        <div class="modal">
+        bd.innerHTML = `
+            <div class="modal">
 
-            <h3>Policy Notice</h3>
+                <h3>Policy Notice</h3>
 
-            <p>
-                Are you accepting our policy to play the game?
-                This notice is informational and does not block access.
-            </p>
+                <p>
+                    Are you accepting our policy to play the game?
+                    This notice is informational and does not block access.
+                </p>
 
-            <div class="modal-actions">
+                <div class="modal-actions">
 
-                <button class="btn" id="age-yes">
-                    Yes, Accept
-                </button>
+                    <button class="btn" id="age-yes">
+                        Yes, Accept
+                    </button>
 
-                <button class="btn ghost" id="age-no">
-                    Close
-                </button>
+                    <button class="btn ghost" id="age-no">
+                        Close
+                    </button>
+
+                </div>
 
             </div>
+        `;
 
-        </div>
-    `;
+        document.body.appendChild(bd);
 
-    document.body.appendChild(bd);
+        bd.style.display = "flex";
 
-    bd.style.display = "flex";
+        function close() {
+            bd.classList.add("fade-out");
 
-    function close() {
-        bd.classList.add("fade-out");
+            setTimeout(() => {
+                bd.remove();
+            }, 180);
+        }
 
-        setTimeout(() => {
-            bd.remove();
-        }, 180);
+        return {
+            bd,
+            close
+        };
     }
 
-    return {
-        bd,
-        close
+    window.PopupIndex = function () {
+
+        const built = buildPopup();
+
+        if (!built) return;
+
+        const { bd, close } = built;
+
+        bd.querySelector("#age-yes").addEventListener("click", close);
+
+        bd.querySelector("#age-no").addEventListener("click", () => {
+            window.location.href = "privacy.html";
+        });
+
     };
-}
 
-window.PopupIndex = function () {
+    window.PopupLander = function () {
 
-    const built = buildPopup();
+        const built = buildPopup();
 
-    if (!built) return;
+        if (!built) return;
 
-    const { bd, close } = built;
+        const { bd } = built;
 
-    bd.querySelector("#age-yes").addEventListener("click", close);
+        bd.querySelector("#age-yes").addEventListener("click", () => {
+            window.location.href = REDIRECT;
+        });
 
-    bd.querySelector("#age-no").addEventListener("click", () => {
-        window.location.href = "privacy.html";
-    });
+        bd.querySelector("#age-no").addEventListener("click", () => {
+            window.location.href = REDIRECT;
+        });
 
-};
-
-window.PopupLander = function () {
-
-    const built = buildPopup();
-
-    if (!built) return;
-
-    const { bd } = built;
-
-    bd.querySelector("#age-yes").addEventListener("click", () => {
-        window.location.href = REDIRECT;
-    });
-
-    bd.querySelector("#age-no").addEventListener("click", () => {
-        window.location.href = REDIRECT;
-    });
-
-};
-```
+    };
 
 })();
