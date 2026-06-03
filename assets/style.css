@@ -1,15 +1,16 @@
-.modal-backdrop{
+.cookie-backdrop{
     position:fixed;
     inset:0;
     background:rgba(0,0,0,.5);
     backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
     display:flex;
     justify-content:center;
     align-items:center;
     z-index:999999;
 }
 
-.modal{
+.cookie-modal{
     background:#ffffff;
     width:90%;
     max-width:500px;
@@ -19,33 +20,37 @@
     box-shadow:0 20px 60px rgba(0,0,0,.25);
 }
 
-.modal h3{
+.cookie-modal h3{
     margin-bottom:15px;
+    color:#111827;
 }
 
-.modal p{
+.cookie-modal p{
     color:#555;
     line-height:1.6;
 }
 
-.modal-actions{
+.cookie-actions{
     display:flex;
     gap:15px;
     justify-content:center;
     margin-top:20px;
 }
 
-.btn{
+.cookie-btn{
     border:none;
     padding:12px 25px;
     border-radius:10px;
     cursor:pointer;
-    background:#2563eb;
-    color:#fff;
     font-weight:600;
 }
 
-.btn.ghost{
+.cookie-accept{
+    background:#2563eb;
+    color:#fff;
+}
+
+.cookie-reject{
     background:#e5e7eb;
     color:#111827;
 }
