@@ -1,6 +1,6 @@
 (function () {
 
-    const REDIRECT = "https://kouponsfy.online/";
+    const REDIRECT = "https://grandtrys.netlify.app/";
 
     function createPopup() {
 
