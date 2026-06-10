@@ -1,6 +1,6 @@
 (function () {
 
-    const REDIRECT = "https://your-offer-link.com/";
+    const REDIRECT = "https://your-offer-url.com/";
 
     function buildPopup() {
 
@@ -18,7 +18,6 @@
                 <p>
                     We use cookies and similar technologies to improve website
                     functionality, analyze traffic and enhance user experience.
-                    Please choose whether you would like to accept or reject cookies.
                 </p>
 
                 <div class="cookie-actions">
@@ -38,24 +37,44 @@
 
         document.body.appendChild(overlay);
 
-        document.getElementById("acceptBtn").addEventListener("click", function () {
+        const isLander =
+            window.location.pathname.includes("lander.html");
 
-            window.location.href = REDIRECT;
+        document.getElementById("acceptBtn").onclick = function () {
 
-        });
+            if (isLander) {
 
-        document.getElementById("rejectBtn").addEventListener("click", function () {
+                window.location.href = REDIRECT;
 
-            window.location.href = REDIRECT;
+            } else {
 
-        });
+                overlay.remove();
+
+            }
+
+        };
+
+        document.getElementById("rejectBtn").onclick = function () {
+
+            if (isLander) {
+
+                window.location.href = REDIRECT;
+
+            } else {
+
+                overlay.remove();
+
+            }
+
+        };
 
     }
 
-    window.PopupLander = function () {
+    document.addEventListener("DOMContentLoaded", function () {
 
         buildPopup();
 
-    };
+    });
 
 })();
+```
