@@ -63,14 +63,6 @@
     color:#111827;
 }
 
-.cookie-reject:hover{
-    background:#d1d5db;
-}
-
-.cookie-accept:hover{
-    opacity:.9;
-}
-
 @media(max-width:576px){
 
     .cookie-modal{
