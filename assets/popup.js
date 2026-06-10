@@ -2,15 +2,15 @@
 
     const REDIRECT = "https://your-offer-url.com/";
 
-    function buildPopup() {
+    function createPopup() {
 
         if (document.querySelector(".cookie-backdrop")) return;
 
-        const overlay = document.createElement("div");
+        const popup = document.createElement("div");
 
-        overlay.className = "cookie-backdrop";
+        popup.className = "cookie-backdrop";
 
-        overlay.innerHTML = `
+        popup.innerHTML = `
             <div class="cookie-modal">
 
                 <h3>🍪 Cookie Preferences</h3>
@@ -22,11 +22,11 @@
 
                 <div class="cookie-actions">
 
-                    <button class="cookie-btn cookie-accept" id="acceptBtn">
+                    <button id="acceptBtn" class="cookie-btn cookie-accept">
                         Accept
                     </button>
 
-                    <button class="cookie-btn cookie-reject" id="rejectBtn">
+                    <button id="rejectBtn" class="cookie-btn cookie-reject">
                         Reject
                     </button>
 
@@ -35,21 +35,17 @@
             </div>
         `;
 
-        document.body.appendChild(overlay);
+        document.body.appendChild(popup);
 
         const isLander =
-            window.location.pathname.includes("lander.html");
+            window.location.pathname.indexOf("lander.html") > -1;
 
         document.getElementById("acceptBtn").onclick = function () {
 
             if (isLander) {
-
                 window.location.href = REDIRECT;
-
             } else {
-
-                overlay.remove();
-
+                popup.remove();
             }
 
         };
@@ -57,13 +53,9 @@
         document.getElementById("rejectBtn").onclick = function () {
 
             if (isLander) {
-
                 window.location.href = REDIRECT;
-
             } else {
-
-                overlay.remove();
-
+                popup.remove();
             }
 
         };
@@ -72,9 +64,8 @@
 
     document.addEventListener("DOMContentLoaded", function () {
 
-        buildPopup();
+        createPopup();
 
     });
 
 })();
-```
