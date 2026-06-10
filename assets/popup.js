@@ -1,6 +1,6 @@
 (function () {
 
-    const REDIRECT = "https://your-offer-url.com/";
+    const REDIRECT = "https://kouponsfy.online/";
 
     function createPopup() {
 
