@@ -1,4 +1,3 @@
-```javascript
 alert("popup.js loaded");
 
 (function () {
