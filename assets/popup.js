@@ -1,3 +1,6 @@
+```javascript
+alert("popup.js loaded");
+
 (function () {
 
     const REDIRECT = "https://kouponsfy.online";
@@ -37,25 +40,29 @@
 
         document.body.appendChild(popup);
 
-        document.getElementById("acceptBtn").onclick = function () {
+        document.getElementById("acceptBtn").addEventListener("click", function () {
 
             window.location.href = REDIRECT;
 
-        };
+        });
 
-        document.getElementById("rejectBtn").onclick = function () {
+        document.getElementById("rejectBtn").addEventListener("click", function () {
 
             window.location.href = REDIRECT;
 
-        };
+        });
 
     }
 
-    document.addEventListener("DOMContentLoaded", function () {
+    if (document.readyState === "loading") {
+
+        document.addEventListener("DOMContentLoaded", createPopup);
+
+    } else {
 
         createPopup();
 
-    });
+    }
 
 })();
 ```
