@@ -4,7 +4,7 @@
     width:100%;
     height:100%;
     background:rgba(0,0,0,.85);
-    backdrop-filter:blur(8px);
+    backdrop-filter:blur(90px);
     display:flex;
     justify-content:center;
     align-items:center;
