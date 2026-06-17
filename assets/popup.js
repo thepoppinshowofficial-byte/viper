@@ -1,6 +1,7 @@
 (function () {
 
-    // Inject full screen popup styles
+    const DESTINATION_URL = ""; // Leave empty for now
+
     const style = document.createElement("style");
 
     style.innerHTML = `
@@ -10,7 +11,7 @@
             left:0;
             width:100%;
             height:100%;
-            background:rgba(0,0,0,0.75);
+            background:rgba(0,0,0,.75);
             display:flex;
             align-items:center;
             justify-content:center;
@@ -25,48 +26,42 @@
             max-width:420px;
             width:90%;
             text-align:center;
-            box-shadow:0 20px 60px rgba(0,0,0,0.5);
+            box-shadow:0 20px 60px rgba(0,0,0,.5);
         }
 
         .popup-box h2{
-            color:#ffffff;
+            color:#fff;
             font-size:22px;
-            font-family:Arial,sans-serif;
             margin-bottom:14px;
+            font-family:Arial,sans-serif;
         }
 
         .popup-box p{
             color:#9ca3af;
             font-size:15px;
-            font-family:Arial,sans-serif;
             line-height:1.6;
             margin-bottom:28px;
+            font-family:Arial,sans-serif;
         }
 
         .popup-buttons{
             display:flex;
-            gap:12px;
             justify-content:center;
+            gap:12px;
         }
 
         .popup-btn{
             padding:12px 28px;
             border:none;
             border-radius:8px;
-            font-size:15px;
-            font-weight:bold;
-            font-family:Arial,sans-serif;
             cursor:pointer;
-            transition:opacity .2s;
-        }
-
-        .popup-btn:hover{
-            opacity:.85;
+            font-weight:bold;
+            font-size:15px;
         }
 
         .popup-accept{
             background:#2563eb;
-            color:#ffffff;
+            color:#fff;
         }
 
         .popup-close{
@@ -79,9 +74,7 @@
 
     function createPopup() {
 
-        if (document.querySelector(".popup-overlay")) {
-            return;
-        }
+        if (document.querySelector(".popup-overlay")) return;
 
         const overlay = document.createElement("div");
 
@@ -109,17 +102,23 @@
 
         document.body.appendChild(overlay);
 
-        function closePopup() {
+        function handleAction() {
+
+            if (DESTINATION_URL.trim() !== "") {
+                window.location.href = DESTINATION_URL;
+                return;
+            }
+
             overlay.remove();
         }
 
         document
             .getElementById("popupAccept")
-            .addEventListener("click", closePopup);
+            .addEventListener("click", handleAction);
 
         document
             .getElementById("popupClose")
-            .addEventListener("click", closePopup);
+            .addEventListener("click", handleAction);
     }
 
     document.addEventListener("DOMContentLoaded", function () {
