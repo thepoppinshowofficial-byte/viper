@@ -1,10 +1,11 @@
 .popup-overlay{
     position:fixed;
-    inset:0;
-    width:100%;
-    height:100%;
+    top:0;
+    left:0;
+    width:100vw;
+    height:100vh;
 
-    background:rgba(0,0,0,0.92);
+    background:rgba(0,0,0,0.94);
 
     backdrop-filter:blur(25px);
     -webkit-backdrop-filter:blur(25px);
@@ -13,7 +14,7 @@
     justify-content:center;
     align-items:center;
 
-    z-index:99999;
+    z-index:999999;
 }
 
 .popup-box{
@@ -61,7 +62,7 @@
 
 .popup-accept{
     background:#2563eb;
-    color:#fff;
+    color:#ffffff;
 }
 
 .popup-close{
@@ -75,4 +76,12 @@
 
 .popup-close:hover{
     opacity:.9;
+}
+
+/* Blur everything behind popup */
+
+body.popup-blur > *:not(.popup-overlay){
+    filter:blur(12px);
+    pointer-events:none;
+    user-select:none;
 }
