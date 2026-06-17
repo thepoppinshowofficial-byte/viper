@@ -1,4 +1,4 @@
-```javascript
+alert("popup loaded");
 (function () {
 
     function createPopup(redirectMode) {
