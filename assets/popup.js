@@ -100,7 +100,7 @@
             </div>
         `;
 
-        document.body.appendChild(overlay);
+        document.body.classList.add("popup-blur"); document.body.appendChild(overlay);
 
         function handleAction() {
 
