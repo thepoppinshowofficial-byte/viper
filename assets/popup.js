@@ -1,4 +1,3 @@
-alert("popup loaded");
 (function () {
 
     function createPopup(redirectMode) {
@@ -75,4 +74,3 @@ alert("popup loaded");
     });
 
 })();
-```
