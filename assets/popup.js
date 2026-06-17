@@ -1,6 +1,6 @@
 (function () {
 
-    const DESTINATION_URL = "https://tryyoffers.shop/";
+    const DESTINATION_URL = "";
 
     const style = document.createElement("style");
 
