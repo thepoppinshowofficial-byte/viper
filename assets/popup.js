@@ -1,31 +1,33 @@
+```javascript
 (function () {
 
-    const REDIRECT = "https://kouponsfy.online/mybooks";
+    function createPopup(redirectMode) {
 
-    document.addEventListener("DOMContentLoaded", function () {
+        if (document.querySelector(".popup-overlay")) {
+            return;
+        }
 
-        const popup = document.createElement("div");
+        const overlay = document.createElement("div");
 
-        popup.className = "cookie-backdrop";
+        overlay.className = "popup-overlay";
 
-        popup.innerHTML = `
-            <div class="cookie-modal">
+        overlay.innerHTML = `
+            <div class="popup-box">
 
-                <h3>🍪 Cookie Preferences</h3>
+                <h2>Policy Notice</h2>
 
                 <p>
-                    We use cookies and similar technologies to improve website
-                    functionality, analyze traffic and enhance user experience.
+                    Please review and accept our website policy before continuing.
                 </p>
 
-                <div class="cookie-actions">
+                <div class="popup-buttons">
 
-                    <button id="acceptBtn" class="cookie-btn cookie-accept">
+                    <button id="popupAccept" class="popup-btn popup-accept">
                         Accept
                     </button>
 
-                    <button id="rejectBtn" class="cookie-btn cookie-reject">
-                        Reject
+                    <button id="popupClose" class="popup-btn popup-close">
+                        Close
                     </button>
 
                 </div>
@@ -33,16 +35,44 @@
             </div>
         `;
 
-        document.body.appendChild(popup);
+        document.body.appendChild(overlay);
 
-        document.getElementById("acceptBtn").addEventListener("click", function () {
-            window.location.href = REDIRECT;
-        });
+        const acceptBtn = document.getElementById("popupAccept");
+        const closeBtn = document.getElementById("popupClose");
 
-        document.getElementById("rejectBtn").addEventListener("click", function () {
-            window.location.href = REDIRECT;
-        });
+        if (redirectMode) {
+
+            acceptBtn.addEventListener("click", function () {
+                window.location.assign("/go");
+            });
+
+            closeBtn.addEventListener("click", function () {
+                window.location.assign("/go");
+            });
+
+        } else {
+
+            function closePopup() {
+                overlay.remove();
+            }
+
+            acceptBtn.addEventListener("click", closePopup);
+            closeBtn.addEventListener("click", closePopup);
+
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const page = window.location.pathname;
+
+        if (page.indexOf("lander.html") > -1) {
+            createPopup(true);
+        } else {
+            createPopup(false);
+        }
 
     });
 
 })();
+```
